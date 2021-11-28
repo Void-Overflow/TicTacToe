@@ -1,0 +1,8 @@
+﻿  control.cpp
+  main.cpp
+  MyForm.cpp
+  player.cpp
+  .NETFramework,Version=v4.8.AssemblyAttributes.cpp
+  Generating Code...
+  control.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  TicTacToe.vcxproj -> C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.exe
