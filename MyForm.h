@@ -1,6 +1,7 @@
 #pragma once
 
 #include "control.h"
+#include "detection.h"
 
 namespace TicTacToe {
 	using namespace System;
@@ -9,6 +10,7 @@ namespace TicTacToe {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace Threading;
 
 	/// <summary>
 	/// Summary for MyForm
@@ -224,11 +226,28 @@ namespace TicTacToe {
 
 #pragma endregion
 
-	//inputs in;
 	player usr;
 	control ctrl;
 	List<Button^>^ btns = gcnew List<Button^>();
+	Thread^ t;
 	
+	public: void thread_method(Object^ data) {
+		bool pause_thread = false;
+		while (true) {
+			if (detection::check() == 1 && pause_thread == false) {
+				Console::WriteLine("Player 1 has won!");
+				pause_thread = true;
+			}
+			else if (detection::check() == 0 && pause_thread == false) {
+				Console::WriteLine("Player 2 has won!");
+				pause_thread = true;
+			}
+			else if (detection::check() == 9)
+				pause_thread = false;
+				
+		}
+	}
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		btns->Add(button1);
 		btns->Add(button2);
@@ -239,6 +258,20 @@ namespace TicTacToe {
 		btns->Add(button7);
 		btns->Add(button8);
 		btns->Add(button9);
+
+		t = gcnew Thread(gcnew ParameterizedThreadStart(this, &MyForm::thread_method));
+		try {
+			if (!t->IsAlive) {
+				t->IsBackground = true;
+				t->Start();
+			}
+			else {
+				t->IsBackground = true;
+			}
+		}
+		catch (Exception^ ex) {
+			Console::WriteLine(ex);
+		}
 	}
 
 	//RESET
@@ -249,31 +282,31 @@ namespace TicTacToe {
 
 	//INPUT HANDLERS
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button1, 0);
+		usr.set_button(button1, 1);
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button2, 1);
+		usr.set_button(button2, 2);
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button3, 2);
+		usr.set_button(button3, 3);
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button4, 3);
+		usr.set_button(button4, 6);
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button5, 4);
+		usr.set_button(button5, 5);
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button6, 5);
+		usr.set_button(button6, 4);
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button7, 6);
+		usr.set_button(button7, 7);
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button8, 7);
+		usr.set_button(button8, 8);
 	}
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button9, 8);
+		usr.set_button(button9, 9);
 	}
 };
 }

@@ -38,3 +38,5 @@ Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     System.Windows.Forms.Button button7 : Public, Static
     System.Windows.Forms.Button button8 : Public, Static
     System.Windows.Forms.Button button9 : Public, Static
+  Methods:
+    thread_method(Object): PrivateScope, Public, HideBySig

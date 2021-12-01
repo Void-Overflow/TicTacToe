@@ -2,6 +2,7 @@
 #define CONTROL
 
 #include "player.h"
+#include "detection.h"
 
 using namespace System::Windows::Forms;
 
