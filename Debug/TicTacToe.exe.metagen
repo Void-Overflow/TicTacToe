@@ -29,14 +29,14 @@ Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    System.Windows.Forms.Button button1 : Public, Static
-    System.Windows.Forms.Button button2 : Public, Static
-    System.Windows.Forms.Button button3 : Public, Static
-    System.Windows.Forms.Button button4 : Public, Static
-    System.Windows.Forms.Button button5 : Public, Static
-    System.Windows.Forms.Button button6 : Public, Static
-    System.Windows.Forms.Button button7 : Public, Static
-    System.Windows.Forms.Button button8 : Public, Static
-    System.Windows.Forms.Button button9 : Public, Static
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Button button5 : Public
+    System.Windows.Forms.Button button6 : Public
+    System.Windows.Forms.Button button7 : Public
+    System.Windows.Forms.Button button8 : Public
+    System.Windows.Forms.Button button9 : Public
   Methods:
     thread_method(Object): PrivateScope, Public, HideBySig

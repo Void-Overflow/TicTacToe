@@ -40,17 +40,34 @@ namespace TicTacToe {
 	private: System::Windows::Forms::ImageList^ imageList1;
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	public: static System::Windows::Forms::Button^ button1;
-	public: static System::Windows::Forms::Button^ button2;
-	public: static System::Windows::Forms::Button^ button3;
-	public: static System::Windows::Forms::Button^ button4;
-	public: static System::Windows::Forms::Button^ button5;
-	public: static System::Windows::Forms::Button^ button6;
-	public: static System::Windows::Forms::Button^ button7;
-	public: static System::Windows::Forms::Button^ button8;
-	public: static System::Windows::Forms::Button^ button9;
-	private: static System::Windows::Forms::Button^ button10;
-	private: static System::ComponentModel::IContainer^ components;
+	public: System::Windows::Forms::Button^ button1;
+	private:
+	public: System::Windows::Forms::Button^ button2;
+	public: System::Windows::Forms::Button^ button3;
+	public: System::Windows::Forms::Button^ button4;
+	public: System::Windows::Forms::Button^ button5;
+	public: System::Windows::Forms::Button^ button6;
+	public: System::Windows::Forms::Button^ button7;
+	public: System::Windows::Forms::Button^ button8;
+	public: System::Windows::Forms::Button^ button9;
+	private: System::Windows::Forms::Button^ button10;
+	public:
+	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::Label^ label3;
+
+
+	private: System::ComponentModel::IContainer^ components;
+
+
+
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -79,7 +96,10 @@ namespace TicTacToe {
 			this->button8 = (gcnew System::Windows::Forms::Button());
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// imageList1
@@ -200,11 +220,33 @@ namespace TicTacToe {
 			this->button10->UseVisualStyleBackColor = false;
 			this->button10->Click += gcnew System::EventHandler(this, &MyForm::button10_Click);
 			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Location = System::Drawing::Point(12, 204);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(181, 128);
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox2->TabIndex = 11;
+			this->pictureBox2->TabStop = false;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->ForeColor = System::Drawing::Color::ForestGreen;
+			this->label3->Location = System::Drawing::Point(40, 155);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(0, 37);
+			this->label3->TabIndex = 13;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(788, 429);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->button9);
 			this->Controls->Add(this->button8);
@@ -220,27 +262,56 @@ namespace TicTacToe {
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 
 #pragma endregion
 
+	delegate void SetLabelDelegate(String^ text, Label^ textbox);
+	private: void SetLabel(String^ text, Label^ label) {
+		if (label->InvokeRequired) {
+			SetLabelDelegate^ d =
+				gcnew SetLabelDelegate(this, &MyForm::SetLabel);
+			this->Invoke(d, gcnew array<Object^> { text, label});
+		}
+		else {
+			label->Text = text;
+		}
+	}
+
 	player usr;
 	control ctrl;
 	List<Button^>^ btns = gcnew List<Button^>();
 	Thread^ t;
+	bool isWon = false;
 	
 	public: void thread_method(Object^ data) {
 		bool pause_thread = false;
 		while (true) {
 			if (detection::check() == 1 && pause_thread == false) {
-				Console::WriteLine("Player 1 has won!");
 				pause_thread = true;
+				isWon = true;
+
+				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
+				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\x.png"));
+
+				SetLabel("Winner!", label3);
+				
+				Console::WriteLine("Player 1 has won!");
 			}
 			else if (detection::check() == 0 && pause_thread == false) {
-				Console::WriteLine("Player 2 has won!");
 				pause_thread = true;
+				isWon = true;
+
+				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
+				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\o.png"));
+
+				SetLabel("Winner!", label3);
+				
+				Console::WriteLine("Player 2 has won!");
 			}
 			else if (detection::check() == 9)
 				pause_thread = false;
@@ -276,37 +347,51 @@ namespace TicTacToe {
 
 	//RESET
 	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
+		label3->Text = "";
+		isWon = false;
+
+		pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\blank.png"));
+
 		for(int i = 0; i < 9; i++)
 			ctrl.reset_data(btns[i]);
 	}
 
 	//INPUT HANDLERS
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button1, 1);
+		if(isWon == false)
+			usr.set_button(button1, 1);
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button2, 2);
+		if (isWon == false)
+			usr.set_button(button2, 2);
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button3, 3);
+		if (isWon == false)
+			usr.set_button(button3, 3);
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button4, 6);
+		if (isWon == false)
+			usr.set_button(button4, 6);
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button5, 5);
+		if (isWon == false)
+			usr.set_button(button5, 5);
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button6, 4);
+		if (isWon == false)
+			usr.set_button(button6, 4);
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button7, 7);
+		if (isWon == false)
+			usr.set_button(button7, 7);
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button8, 8);
+		if (isWon == false)
+			usr.set_button(button8, 8);
 	}
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-		usr.set_button(button9, 9);
+		if (isWon == false)
+			usr.set_button(button9, 9);
 	}
 };
 }
