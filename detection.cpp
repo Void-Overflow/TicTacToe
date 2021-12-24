@@ -5,21 +5,21 @@ using namespace System;
 void detection::set_data(int space, bool player) {
 	if (space == 1)
 		one = player;
-	if (space == 2)
+	else if (space == 2)
 		two = player;
-	if (space == 3)
+	else if (space == 3)
 		three = player;
-	if (space == 4)
+	else if (space == 4)
 		four = player;
-	if (space == 5)
+	else if (space == 5)
 		five = player;
-	if (space == 6)
+	else if (space == 6)
 		six = player;
-	if (space == 7)
+	else if (space == 7)
 		seven = player;
-	if (space == 8)
+	else if (space == 8)
 		eight = player;
-	if (space == 9)
+	else if (space == 9)
 		nine = player;
 
 	Console::WriteLine(Convert::ToString(space) + " " + Convert::ToString(player));
@@ -42,12 +42,16 @@ int detection::check(){
 		return three;
 	else if (seven == eight && seven == nine)
 		return seven;
+	else if (one != 10 && two != 2 && three != 3 
+		&& four != 4 && five != 5 && six != 6 
+		&& seven != 7 && eight != 8 && nine != 9)
+		return 6; //Tie
 	else
-		return 9;
+		return 9; //No win yet
 }
 
 void detection::reset_data() {
-	one = 1;
+	one = 10;
 	two = 2;
 	three = 3;
 	four = 4;

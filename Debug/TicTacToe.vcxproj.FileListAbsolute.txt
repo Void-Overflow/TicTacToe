@@ -2,3 +2,5 @@ C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.vcxp
 C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.exe
 C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.MyForm.resources
 C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.vcxproj.GenerateResource.cache
+C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.MyForm1.resources
+C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.MyForm2.resources

@@ -1,10 +1,10 @@
-#include "MyForm.h"
+#include "MyForm1.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 
 int main() {
-	TicTacToe::MyForm form;
+	TicTacToe::MyForm1 form;
 	Application::Run(% form);
 
 	return 0;

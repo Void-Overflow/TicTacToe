@@ -5,9 +5,8 @@ using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
 
 public ref class player {
-protected:
-	static List<bool>^ ButtonStatus = gcnew List<bool>();
 public:
+	static List<bool>^ ButtonStatus = gcnew List<bool>();
 	player();
 	bool id;
 

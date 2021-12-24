@@ -1,4 +1,6 @@
   TicTacToe.MyForm.resources - Embedded, ContainedInManifestFile, 
+  TicTacToe.MyForm1.resources - Embedded, ContainedInManifestFile, 
+  TicTacToe.MyForm2.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly TicTacToe, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -14,17 +16,23 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class control: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    reset_data(Button): PrivateScope, Public, HideBySig
 Class player: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Boolean id : Public
+    System.Collections.Generic.List`1[System.Boolean] ButtonStatus : Public, Static
   Methods:
     set_button(Button, Int32): PrivateScope, Public, HideBySig
-Class control: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :player
+Class user: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Collections.Generic.List`1[System.Boolean] ButtonStatus : Public, Static
   Methods:
-    reset_data(Button): PrivateScope, Public, HideBySig
+    set_button(Button, Int32): PrivateScope, Public, HideBySig
 Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -40,3 +48,23 @@ Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     System.Windows.Forms.Button button9 : Public
   Methods:
     thread_method(Object): PrivateScope, Public, HideBySig
+Class TicTacToe.MyForm2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.Button button9 : Public
+    System.Windows.Forms.Button button8 : Public
+    System.Windows.Forms.Button button7 : Public
+    System.Windows.Forms.Button button6 : Public
+    System.Windows.Forms.Button button5 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Threading.Thread t : Public
+    Boolean isWon : Public
+  Methods:
+    thread_method(Object): PrivateScope, Public, HideBySig
+Class TicTacToe.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

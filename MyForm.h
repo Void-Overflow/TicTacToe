@@ -2,6 +2,8 @@
 
 #include "control.h"
 #include "detection.h"
+#include "player.h"
+#include "tab.h"
 
 namespace TicTacToe {
 	using namespace System;
@@ -57,17 +59,6 @@ namespace TicTacToe {
 
 
 	private: System::ComponentModel::IContainer^ components;
-
-
-
-
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
@@ -151,7 +142,7 @@ namespace TicTacToe {
 			// button4
 			// 
 			this->button4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button4->Location = System::Drawing::Point(595, 155);
+			this->button4->Location = System::Drawing::Point(205, 155);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(181, 119);
 			this->button4->TabIndex = 4;
@@ -171,7 +162,7 @@ namespace TicTacToe {
 			// button6
 			// 
 			this->button6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button6->Location = System::Drawing::Point(205, 155);
+			this->button6->Location = System::Drawing::Point(596, 155);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(181, 119);
 			this->button6->TabIndex = 6;
@@ -284,8 +275,11 @@ namespace TicTacToe {
 
 	player usr;
 	control ctrl;
+	tab list;
+
 	List<Button^>^ btns = gcnew List<Button^>();
 	Thread^ t;
+	
 	bool isWon = false;
 	
 	public: void thread_method(Object^ data) {
@@ -312,6 +306,16 @@ namespace TicTacToe {
 				SetLabel("Winner!", label3);
 				
 				Console::WriteLine("Player 2 has won!");
+			}
+			else if (detection::check() == 6 && pause_thread == false) {
+				pause_thread = true;
+
+				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
+				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\tie.png"));
+
+				SetLabel("Tie!", label3);
+
+				Console::WriteLine("Tie!");
 			}
 			else if (detection::check() == 9)
 				pause_thread = false;
@@ -371,7 +375,7 @@ namespace TicTacToe {
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isWon == false)
-			usr.set_button(button4, 6);
+			usr.set_button(button4, 4);
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isWon == false)
@@ -379,7 +383,7 @@ namespace TicTacToe {
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isWon == false)
-			usr.set_button(button6, 4);
+			usr.set_button(button6, 6);
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isWon == false)
