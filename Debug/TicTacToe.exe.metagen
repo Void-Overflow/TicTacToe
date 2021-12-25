@@ -33,6 +33,8 @@ Class user: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     System.Collections.Generic.List`1[System.Boolean] ButtonStatus : Public, Static
   Methods:
     set_button(Button, Int32): PrivateScope, Public, HideBySig
+Class tab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -68,3 +70,10 @@ Class TicTacToe.MyForm2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TicTacToe.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class opponent: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Collections.Generic.List`1[System.Boolean] ButtonStatus : Public, Static
+  Methods:
+    place_logic(): PrivateScope, Public, HideBySig
+    generate_place(): PrivateScope, Public, HideBySig
