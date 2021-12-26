@@ -1,8 +1,11 @@
 #pragma once
 
+#include "MyForm3.h"
+
 #include "control.h"
 #include "detection.h"
 #include "user.h"
+#include "tab.h"
 
 namespace TicTacToe {
 
@@ -61,6 +64,7 @@ namespace TicTacToe {
 	public: System::Windows::Forms::Button^ button2;
 	public: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button11;
 	public:
 	private: System::ComponentModel::IContainer^ components;
 
@@ -93,6 +97,7 @@ namespace TicTacToe {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button11 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -109,14 +114,14 @@ namespace TicTacToe {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::ForestGreen;
-			this->label3->Location = System::Drawing::Point(31, 168);
+			this->label3->Location = System::Drawing::Point(37, 253);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(0, 37);
 			this->label3->TabIndex = 26;
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->Location = System::Drawing::Point(3, 217);
+			this->pictureBox2->Location = System::Drawing::Point(9, 302);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(181, 128);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -235,11 +240,23 @@ namespace TicTacToe {
 			this->pictureBox1->TabIndex = 14;
 			this->pictureBox1->TabStop = false;
 			// 
+			// button11
+			// 
+			this->button11->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button11->Location = System::Drawing::Point(17, 141);
+			this->button11->Name = L"button11";
+			this->button11->Size = System::Drawing::Size(159, 58);
+			this->button11->TabIndex = 27;
+			this->button11->Text = L"Tab";
+			this->button11->UseVisualStyleBackColor = false;
+			this->button11->Click += gcnew System::EventHandler(this, &MyForm2::button11_Click);
+			// 
 			// MyForm2
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(771, 443);
+			this->Controls->Add(this->button11);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->button10);
@@ -276,6 +293,7 @@ namespace TicTacToe {
 	}
 	user usr;
 	control ctrl;
+	tab list;
 
 	List<Button^>^ btns = gcnew List<Button^>();
 	public: Thread^ t;
@@ -288,6 +306,8 @@ namespace TicTacToe {
 			if (detection::check() == 1 && pause_thread == false) {
 				pause_thread = true;
 				isWon = true;
+				
+				list.player_one_count++;
 
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\x.png"));
@@ -300,6 +320,8 @@ namespace TicTacToe {
 				pause_thread = true;
 				isWon = true;
 
+				list.player_zero_count++;
+
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\o.png"));
 
@@ -310,6 +332,8 @@ namespace TicTacToe {
 			else if (detection::check() == 6 && pause_thread == false) {
 				pause_thread = true;
 				isWon = true;
+
+				list.tie_count++;
 
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\tie.png"));
@@ -351,7 +375,7 @@ namespace TicTacToe {
 		}
 	}
 
-		   //RESET
+	//RESET
 	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
 		label3->Text = "";
 		isWon = false;
@@ -363,7 +387,13 @@ namespace TicTacToe {
 			ctrl.reset_data(btns[i]);
 	}
 
-		   //INPUT HANDLERS
+	//TAB FORM HANDLER
+	private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
+		MyForm3^ tabForm = gcnew MyForm3;
+		tabForm->ShowDialog();
+	}
+
+	//INPUT HANDLERS
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isWon == false) {
 			int usr_set = usr.set_button(button1, 1);
@@ -373,6 +403,7 @@ namespace TicTacToe {
 			else if (usr_set == 11)
 				return;
 			else {
+				Thread::Sleep(500);
 				btns[usr_set]->BackgroundImage = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\x.png"));
 			}
 		}
@@ -481,5 +512,6 @@ namespace TicTacToe {
 			}
 		}
 	}
+
 };
 }

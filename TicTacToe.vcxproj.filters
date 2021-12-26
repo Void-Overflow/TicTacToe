@@ -48,6 +48,9 @@
     <ClCompile Include="tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyForm3.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="tab.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm3.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

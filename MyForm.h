@@ -1,5 +1,7 @@
 #pragma once
 
+#include "MyForm3.h"
+
 #include "control.h"
 #include "detection.h"
 #include "player.h"
@@ -56,6 +58,7 @@ namespace TicTacToe {
 	public:
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Button^ button11;
 
 
 	private: System::ComponentModel::IContainer^ components;
@@ -89,6 +92,7 @@ namespace TicTacToe {
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->button11 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
@@ -213,10 +217,10 @@ namespace TicTacToe {
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->Location = System::Drawing::Point(12, 204);
+			this->pictureBox2->Location = System::Drawing::Point(12, 289);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(181, 128);
-			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 11;
 			this->pictureBox2->TabStop = false;
 			// 
@@ -226,16 +230,28 @@ namespace TicTacToe {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::ForestGreen;
-			this->label3->Location = System::Drawing::Point(40, 155);
+			this->label3->Location = System::Drawing::Point(40, 240);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(0, 37);
 			this->label3->TabIndex = 13;
+			// 
+			// button11
+			// 
+			this->button11->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button11->Location = System::Drawing::Point(26, 139);
+			this->button11->Name = L"button11";
+			this->button11->Size = System::Drawing::Size(159, 58);
+			this->button11->TabIndex = 14;
+			this->button11->Text = L"Tab";
+			this->button11->UseVisualStyleBackColor = false;
+			this->button11->Click += gcnew System::EventHandler(this, &MyForm::button11_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(788, 429);
+			this->Controls->Add(this->button11);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->button10);
@@ -289,6 +305,8 @@ namespace TicTacToe {
 				pause_thread = true;
 				isWon = true;
 
+				list.player_one_count++;
+
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\x.png"));
 
@@ -300,6 +318,8 @@ namespace TicTacToe {
 				pause_thread = true;
 				isWon = true;
 
+				list.player_zero_count++;
+
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\o.png"));
 
@@ -309,6 +329,8 @@ namespace TicTacToe {
 			}
 			else if (detection::check() == 6 && pause_thread == false) {
 				pause_thread = true;
+
+				list.tie_count++;
 
 				pictureBox2->SizeMode = PictureBoxSizeMode::StretchImage;
 				pictureBox2->Image = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\tie.png"));
@@ -358,6 +380,12 @@ namespace TicTacToe {
 
 		for(int i = 0; i < 9; i++)
 			ctrl.reset_data(btns[i]);
+	}
+	
+	//TAB FORM CALLER
+	private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
+		MyForm3^ tabForm = gcnew MyForm3;
+		tabForm->ShowDialog();
 	}
 
 	//INPUT HANDLERS

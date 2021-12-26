@@ -1,3 +1,6 @@
-﻿  opponent.cpp
+﻿  MyForm1.cpp
+  MyForm2.cpp
+  main.cpp
+  Generating Code...
   control.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   TicTacToe.vcxproj -> C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.exe

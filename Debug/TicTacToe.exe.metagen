@@ -1,6 +1,7 @@
   TicTacToe.MyForm.resources - Embedded, ContainedInManifestFile, 
   TicTacToe.MyForm1.resources - Embedded, ContainedInManifestFile, 
   TicTacToe.MyForm2.resources - Embedded, ContainedInManifestFile, 
+  TicTacToe.MyForm3.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly TicTacToe, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -34,6 +35,15 @@ Class user: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     set_button(Button, Int32): PrivateScope, Public, HideBySig
 Class tab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 player_zero_count : Public, Static
+    Int32 player_one_count : Public, Static
+    Int32 tie_count : Public, Static
+  Methods:
+    reset_data(): PrivateScope, Public, HideBySig
+Class TicTacToe.MyForm3: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class TicTacToe.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
