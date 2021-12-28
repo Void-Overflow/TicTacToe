@@ -389,8 +389,7 @@ namespace TicTacToe {
 
 	//TAB FORM HANDLER
 	private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
-		MyForm3^ tabForm = gcnew MyForm3;
-		tabForm->ShowDialog();
+		ctrl.load_tab();
 	}
 
 	//INPUT HANDLERS

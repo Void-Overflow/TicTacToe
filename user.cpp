@@ -14,13 +14,15 @@ int user::set_button(Button^ button, int index) {
 	index--;
 	if (ButtonStatus[index] != true) {
 		button->BackgroundImage = Image::FromFile(Convert::ToString(Environment::CurrentDirectory + "\\images\\o.png"));
+
 		ButtonStatus[index] = true;
 		detection::set_data(index + 1, 0);
 
 		opponent response;
-		response.ButtonStatus = ButtonStatus;
-		int place = response.generate_place();
+		opponent::ButtonStatus = ButtonStatus;
 
+		int place = response.generate_place();
+		ButtonStatus[place] = true;
 		detection::set_data(place + 1, 1);
 
 		return place;

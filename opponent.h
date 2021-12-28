@@ -4,10 +4,13 @@
 using namespace System::Collections::Generic;
 
 public ref class opponent{
-public:
-	static List<bool>^ ButtonStatus;
-
+private: 
 	int place_logic();
+public:
+	static List<bool>^ ButtonStatus = gcnew List<bool>();
+	static List<bool>^ LogicCheckFlags = gcnew List<bool>();
+
+	opponent();
 	int generate_place();
 };
 
