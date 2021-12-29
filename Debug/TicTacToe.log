@@ -1,15 +1,7 @@
-﻿  control.cpp
-  opponent.cpp
-  Generating Code...
-  control.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-.NETFramework,Version=v4.8.AssemblyAttributes.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
+﻿  control.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+.NETFramework,Version=v4.8.AssemblyAttributes.obj : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 user.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
 tab.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
-player.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
-MyForm3.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
-MyForm2.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
-MyForm1.obj : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
-MyForm.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
-main.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
+player.obj : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
 detection.obj : warning LNK4204: 'C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\vc142.pdb' is missing debugging information for referencing module; linking object as if no debug info
   TicTacToe.vcxproj -> C:\Users\dehla\Desktop\Visual Studio Projects\C++\TicTacToe\Debug\TicTacToe.exe
